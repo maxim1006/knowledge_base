@@ -1,0 +1,1 @@
+<link href="/portal-bhn-common-theme/images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
