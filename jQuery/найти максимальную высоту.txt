@@ -1,0 +1,19 @@
+function setEqualHeight(arr) {
+        var arrOfObjHeights = [],
+            i = 0, j = 0,
+            arrLength = arr.length,
+            max;
+
+        for (; i<arrLength; i++) {
+            arrOfObjHeights.push(arr[i].height());
+        }
+
+        max = Math.max.apply(Math, arrOfObjHeights);
+
+        for (; j<arrLength; j++) {
+            arr[j].height(max);
+        }
+    }
+
+
+setEqualHeight([$rightCol, $centerCol]);

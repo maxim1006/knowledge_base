@@ -1,0 +1,14 @@
+.categories { margin-bottom: 20px; }
+.panel-body { overflow-x: hidden; }
+.media { margin-top: 0; margin-bottom: 20px; }
+
+.list-group-item {
+    -webkit-transition: opacity 400ms linear;
+    -moz-transition: opacity 400ms linear;
+    -o-transition: opacity 400ms linear;
+    transition: opacity 400ms linear;
+}
+
+.fade-out.byebye { position: absolute; left: -99999px; }
+
+.list-group-item.fade-out { opacity: 0; }

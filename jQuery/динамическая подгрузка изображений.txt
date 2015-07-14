@@ -1,0 +1,23 @@
+function loadChannelList(channelList) {
+        var CHANNELS_PATH = 'images/channels/39x39/';
+        var isLoad = channelList.data('load') || 0;
+
+        if (!isLoad) {
+            channelList.find('.channel-list__item').each(function() {
+                var channel = $(this),
+                    channelLogo = CHANNELS_PATH + 'sm_' + channel.data('logo'),
+                    channelName = channel.find('.channel-list__name');
+
+                // Check if channel logo exist
+                $('<img/>').attr('src', channelLogo).load(function() {
+                    $(this).remove(); // prevent memory leaks
+                    channel.attr('title', channelName.text());
+                    channelName.remove();
+                    channel.css('background-image', 'url(' + channelLogo + ')');
+                }).error(function() {
+                    channel.data('logo', '');
+                });
+            });
+
+        }
+    }

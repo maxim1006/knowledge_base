@@ -1,0 +1,25 @@
+ List<String> urls = new ArrayList<String>();
+
+        for (OrderItem item : quota.getOrderItems())
+        {
+            if (item.getAction().equals(OrderItemAction.DASH.getStringValue()))
+                continue;
+            if (item.getAction().equals(OrderItemAction.MODIFY.getStringValue()))
+                continue;
+            if (item.getAction().equals(OrderItemAction.DELETE.getStringValue()))
+                continue;
+            String contractPart = DataObjectHelper.getDataObjectValue(item.getProductOffering(), DSConstants.OFFERING_SPECIFIC_CONTRACT_ATTR_ID, String.class);
+            if (!StringUtils.isEmpty(contractPart)) {
+                urls.add(contractPart);
+            }
+        }
+
+        contractText = contractText + " " + urls.get(0);
+        if (urls.size() > 1)
+        {
+            for (int i = 1; i < urls.size()-1; i++)
+            {
+                contractText = contractText + ", " + urls.get(i);
+            }
+            contractText = contractText + " and " + urls.get(urls.size()-1);
+        }

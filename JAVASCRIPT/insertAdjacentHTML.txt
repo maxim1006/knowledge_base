@@ -1,0 +1,11 @@
+<!-- beforebegin -->
+<p>
+<!-- afterbegin -->
+foo
+<!-- beforeend -->
+</p>
+<!-- afterend -->
+
+var nav = document.querySelector('.nav');
+
+nav.insertAdjacentHTML('beforeend', '<div id="two">two</div>');

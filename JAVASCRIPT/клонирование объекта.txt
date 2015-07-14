@@ -1,0 +1,37 @@
+function clone(p, c) {
+    var c = c || (p.constructor === Array ? [] : {});
+    for (var i in p) {
+        if (p.hasOwnProperty(i)) {
+            if (typeof p[i] === 'object' && p[i] !== null) {
+                c[i] = p[i].constructor === Array ? [] : {};
+                clone(p[i], c[i]);
+            } else {
+                c[i] = p[i];
+            }
+        }
+    }
+    return c;
+};
+
+var obj2 = clone(obj);
+
+
+
+
+ function extendDeep(parent, child) {
+                var i,
+                    toStr = Object.prototype.toString,
+                    astr = "[object Array]";
+                child = child || {};
+                for (i in parent) {
+                    if (parent.hasOwnProperty(i)) {
+                        if (typeof parent[i] === "object") {
+                            child[i] = (toStr.call(parent[i]) === astr) ? [] : {};
+                            extendDeep(parent[i], child[i]);
+                        } else {
+                            child[i] = parent[i];
+                        }
+                    }
+                }
+                return child;
+            }

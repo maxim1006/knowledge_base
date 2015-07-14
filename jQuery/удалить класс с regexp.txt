@@ -1,0 +1,7 @@
+<div class="drum drum1">123</div>
+
+$('.drum')
+    .attr('class',
+    function(i, c){
+        return c.replace(/(^|\s)drum\S+/g, '');
+    });

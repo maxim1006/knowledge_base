@@ -1,0 +1,27 @@
+ѕроста€ перезагрузка страницы
+window.location.assign('/');
+document.location = document.URL;
+
+
+//чтобы помен€ть адрес
+window.location.replace('...');
+
+
+
+
+
+//„тобы сравнить значени€ после #
+if ($(location).attr('href').indexOf("appointment") !== -1)
+
+
+
+//„тобы найти значени€ после #
+window.location.href.match(/#(.*)$/);
+match ? match[1] : '';
+
+//или
+
+window.location.hash
+
+//чтобы помен€ть hash
+window.location.hash = '...';

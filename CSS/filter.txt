@@ -1,0 +1,5 @@
+.filter {
+-webkit-filter: sepia(100%);
+filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' ><filter i….686 .168 0 0 .272 .534 .181 0 0 0 0 0 1 0' /></filter></svg>#sepia"); */
+filter: sepia(100%);
+}

@@ -1,0 +1,6 @@
+html {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+
+<meta name="viewport" content="width=device-width, initial-scale=1">

@@ -1,0 +1,236 @@
+Скачиваю JDK, устанавливаю, затем в PAth (внизу в переменных windows), прописываю
+C:\Program Files\Java\jdk1.7.0_45\bin
+затем в консоли проверяю java -version и javac -version - должны совпадать
+
+
+
+- В JAVA есть главный класс OBJECT, а все остальные от него наследуются (OOP)
+
+
+- Garbage Collection - в JAVA программеры не управляют памятью.
+
+
+- Весь исходный код модульный, те разбиваю прогу на модули (классы)
+	а) 1 класс - 1 файл с расширением .java
+
+- Все переменные называю с маленькой буквы, затем кемелкейс, затем инициализирую int i = 0; float b = 1.2;
+
+- делаю массив из int, массив в java это объект.
+int[] arr = new int[10];
+
+- циклы for
+int[] arr = {3,4,5,6};
+for(int i=0; i<arr.length; i++){}
+for(int elem: arr) {}
+это одинаковые циклы
+выход из цикла break
+
+
+
+
+
+1) Первый файл HelloWorld
+
+создаю notepad HelloWorld.java >>> javac HelloWorld.java - компайлер >>> java HelloWorld - выполнение файла (по имени класса)
+
+Packages in Java - типо namespace, который позволяет разделить классы по отдельным местам. Те package - это папки в src директории в которых лежат различные .java файлы
+
+
+
+Переменные и операторы
+int - числа (32 бита);
+long - числа (64 бита);
+float - десятичное число (32 бита);
+double - десятичное число (64 бита);
+boolean - true/false
+char - буква
+String - строка
+
+types - нельзя изменить, если уже задал и его всегда нужно задавать.
+
+операторы сравнения: >, <, >=, <=, ==, !=
+логические операторы: &&, ||, !
+
+
+
+
+Scope
+бывает: вне класса -> class -> метод, например public static void main(String[] args){} -> block (блок это то, что в {})
+Переменная определяется по следующему приоритету: приоритет больше у переменной, которая находится глубже по scope
+новая область видимости: {}
+
+
+
+
+Работа со строками
+String name = "max";
+System.out.println(name.length()) //3
+System.out.println(name.indexOf('m')) //0
+
+Строка всегда в двойных кавычках, 1 символ - в одинарных
+
+
+
+Работа с массивами:
+из_чего_состоит_массив[] name_of_array = new из_чего_состоит_массив[quantity];
+например int[] numbers = new int[10];
+Массивы нельзя увеличить, если нужна будет новая, должен буду создавать новый массив.
+
+
+
+Циклы:
+//пример for loop
+		for( int i = 0; i < copies; i++) {
+	             System.out.println(textToPrint);
+//		} 
+		
+		//пример while loop
+		while(copies > 0 && paperTray.isEmpty()) {
+			System.out.println(textToPrint);
+			copies--;
+			paperTray.usePage();
+		}
+		
+		if(!paperTray.isEmpty())
+			System.out.println("Load the paper!!");
+		
+		//примеры switch и if		
+//		switch(copies) {
+//			case 0:
+//				break;
+//			case 1:
+//			case 5:	
+//				if(isOn) {
+//					System.out.println(modelNumber + " is On!");
+//				} else {
+//					System.out.println(modelNumber + " is Off!");
+//				}
+//				break;
+//			case 2:
+//				if(isOn) {
+//					System.out.println(modelNumber + " is On!");
+//					System.out.println(modelNumber + " is On!");
+//				} else {
+//					System.out.println(modelNumber + " is Off!");
+//					System.out.println(modelNumber + " is Off!");
+//				}
+//				break;
+//			default:
+//				System.out.println("Number is not supported");
+//		}		
+	}
+		
+	//Пример for each loop
+	public void printColors() {
+		String[] colors = new String[] {"Red", "Blue", "Green"};
+		//для всех currentColor в colors
+		for( String currentColor : colors ) {
+			//строки сравниваю через
+			//строка_для_сравнения.equals(с_чем_сравниваю), могу исполь
+			//зовать break и continue
+			if("Red".equals(currentColor))
+				//break;
+				continue;
+			System.out.println(currentColor);
+		}
+	}
+	
+	
+	//Пример создания листа
+	List<String> urls = new ArrayList<String>();
+	могу добавить что-нибудь urls.add(contractPart);
+	затем пройтись по листу
+ 	for (int i = 1; i < urls.size()-1; i++)
+            {
+            }
+
+
+
+
+
+Классы
+Класс в JAVA - это группа взаимосвязанных методов и информации
+Объект - экземпляр класса
+ctrl+shift+o - импортирую класс автоматом в eclipse
+
+
+Методы:
+void - в методе, говорит о том, что этот метод ничего не возвращает
+можно создать метод, модифицирующий создание экземпляров класса
+
+
+Inheretence - если могу сказать (is a), что объект входит в класс - то это наследование, (например cat is an animal)
+super - означает найди родителя от которого я наследуюсь
+public class Printer extends Machine {} - extends - объект Printer наследует все свойства
+и методы Machine
+protected - разрешает всем объектам наследующим св-ва Machine использовать эту переменную
+protected boolean isOn;
+
+
+Composition - если говорю (has a) например машина has a wheel, то колесо входит в состав машины, и это композиция.
+
+
+Polymorphism - много форм (перевод). Есть метод, есть объект, в зависимости от того, како
+му объекту достанется этот метод, так он и будет работать
+
+
+Interface - какой метод должен быть выполнен, каким классом.
+public class Printer implements IMachine {} - здесь implements - это как в наследовании
+расширяет класс Printer, за счет IMachine
+
+
+//это импорт из printing package, где лежит класс Printer
+import printing.Printer;
+
+
+Generic - это способ писать код, независящий от типа. 2 вида: Class level - можно сделать 
+generic без разницы что за тип дома, но мы можем сделать класс, который объединяет дома.
+Methode level - задаем тип не для класса, а для параметра.
+public class Printer<T> implements IMachine{} <T> - означает, что я задаю тип этому классу Printer
+
+
+(тип) переменная - преобразование переменной в тип.
+
+@Autowired - аннотация
+
+
+//пример pojo - это класс, который возвращает два геттера для того чтобы забиндить несколько видов переменных. 
+public class ContractItem
+{
+    private static final long serialVersionUID = -5074129230711190966L;
+    private final String name;
+    private final String url;
+
+    public ContractItem(String name, String url)
+    {
+        this.name = name;
+        this.url = url;
+    }
+
+    public String getUrl()
+    {
+        return url;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+}
+
+
+//Создание листа, затем мапы, затем иду по листу и в мапу записываю значения (с использованием pojo, см. выше)
+List<ContractItem> contractItemList = salesOrderService.getTerms(wizardState.getQuote());
+
+        Map<String, String> contractsMap = new HashMap<String, String>();
+
+        for(ContractItem item : contractItemList)
+        {
+            contractsMap.put(item.getName(), item.getUrl());
+        }
+
+
+
+
+
+http://vmTelus1:8088/mockFieldWorkAppointmentService_v2_0_SOAP

@@ -1,0 +1,73 @@
+(function() {
+
+    var app = window.app || {};
+
+
+    var Manager = function() {};
+    Manager.prototype = {
+        init: function() {
+            var length = 2,
+                component,
+                components = ['SomeFunction', 'SomeFunction1'],
+                names = ['Max', 'Aliya'];
+
+            for (var i=0; i<length; i++) {
+                component = new app[components[i]];
+                component.init(i, names[i]);
+            }
+        }
+    };
+
+
+    var BaseFunction = function() {};
+
+    BaseFunction.prototype = {
+        init: function(num, name) {
+            this.name = name;
+            this.num = num;
+        }
+    };
+
+
+
+    app.SomeFunction =  inherits(BaseFunction, {
+        init: function(num, name) {
+            BaseFunction.prototype.init.apply(this, arguments);
+
+            console.log(this.num + " SomeFunction");
+            console.log(this.name + " SomeFunction");
+        }
+    });
+
+
+
+    app.SomeFunction1 =  inherits(BaseFunction, {
+        init: function(num, name) {
+            BaseFunction.prototype.init.apply(this, arguments);
+
+            console.log(this.num + " SomeFunction1");
+            console.log(this.name + " SomeFunction1");
+        }
+    });
+
+
+    function inherits(Parent, ChildPrototype) {
+        var Child = function (){};
+        var F = function (){};
+        F.prototype = Parent.prototype;
+        Child.prototype = new F();
+        Child.prototype.constructor = Child;
+        Child.superclass = Parent.prototype;
+
+        $.extend(Child.prototype, ChildPrototype);
+
+        return Child;
+    }
+
+
+
+    var manager = new Manager();
+    manager.init();
+
+
+})();

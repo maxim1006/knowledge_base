@@ -1,0 +1,10 @@
+$0 - $0 - при выборе элемента в консоли $0 - это этот элемент
+
+getEventListeners($0) - получаем эвенты на этом элементе
+
+$0.addEventListener("DOMSubtreeModified", function(){debugger;}); - запускаем дебаггер при изменении элемента
+
+var watchMe = {}; 
+Object.observe(watchMe, function() { debugger; }) - следить в дев тулзах за изменением объекта
+
+CPU Profiler - позволяет в отличии от метрики fps найти что конкретно заняло большую часть памяти проца

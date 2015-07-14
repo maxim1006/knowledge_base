@@ -1,0 +1,33 @@
+function f(func) {
+    var ran = false, memo;
+    return function() {
+      if (ran) return memo;
+      ran = true;
+      memo = func.apply(this, arguments);
+      func = null;
+      return memo;
+    };
+  };
+
+function newF() {
+    console.log(123);
+}
+
+var newF1 = f(newF);
+newF1();
+newF1();
+newF1();//выведет только 1 раз 123
+
+
+
+//Здесь вызываю функцию f, только после num кликов по кнопке
+$(function() {
+    var f,
+        num = 3;
+    
+    f = _.after(num, function() {
+        console.log('было ' + num + ' вызова');
+    });
+
+    $('.button').on('click', f);   
+});

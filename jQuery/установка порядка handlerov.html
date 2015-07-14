@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Related channels</title>
+        <link rel="stylesheet" href="css/css.css">
+    </head>
+    <body>
+    
+        <div class="test">123</div>
+
+        <script src="js/jquery.js"></script>
+        <script>
+        $(function(){
+
+            $('.test').on('click', function() {
+                $(this).trigger('firstHandler').trigger('secondHandler');
+            });
+
+            $('.test')
+            .on('firstHandler', function(){
+                console.log(2);
+                console.log(2+5);
+                console.log(!!true);
+            })
+            .on('secondHandler', function() {
+                console.log(1);
+            });
+
+        });
+        </script>
+    </body>
+</html>

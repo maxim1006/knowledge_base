@@ -1,0 +1,5 @@
+.phone-plan-offer__guts {
+    min-height: 150px; 
+    height:auto !important; 
+    height: 150px; 
+}

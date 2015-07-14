@@ -1,0 +1,31 @@
+﻿1
+#hack{
+2
+color:red; /* All browsers */
+3
+color:red !important;/* All browsers but IE6 */
+4
+_color:red; /* Only works in IE6 */
+5
+*color:red; /* IE6, IE7 */
+6
++color:red;/* Only works in IE7*/
+7
+*+color:red; /* Only works in IE7 */
+8
+color:red\9; /* IE6, IE7, IE8, IE9 */
+9
+color:red\0; /* IE8, IE9 */
+10
+color:red\9\0;/*Only works in IE9*/
+11
+}
+For your information, these hacks could not pass the W3C CSS Validator, lucky for us, here is a more standard hack for IE10.
+
+1
+. ie10 #hack{
+2
+color:red; /* Only works in IE10 */
+3
+}
+You see, the reason it works is that IE10 put a class=”ie10″ to the <html> tag, which is very convenient for us to write any hack towards IE10.

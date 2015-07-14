@@ -1,0 +1,59 @@
+//Ёмул€ци€ кроссбраузерного метода
+
+function bind(func, context) {
+  return function() { 
+    return func.apply(context, arguments); 
+  };
+}
+
+function User() {
+  this.id = 1; 
+
+  this.sayHi = bind(function() { 
+    alert(this.id); 
+  }, this);
+}
+var user = new User();
+setTimeout(user.sayHi, 1000); // выведет "1"  
+
+
+//—овременный метод bind
+
+function f() {
+  alert(this.name);
+}
+
+var user = { name: "¬ас€" };
+
+
+var f2 = f.bind(user);
+
+f2(); // выполнит f с this = user
+
+
+function User() {
+  this.id = 1;
+
+  this.sayHi = function() { 
+    alert(this.id); 
+
+  }.bind(this);
+
+}
+var user = new User();
+setTimeout(user.sayHi, 1000); // выведет "1"
+
+
+//jQuery Proxy
+
+var myObj = {
+    message: 'hello',
+    alertMessage: function(){
+        // переменна€ this ссылаетс€ на объект myObj, 
+        // а не на элемент, по которому кликнули
+        alert(this.message);
+        return false;
+    }
+};
+
+$('a').click($.proxy(myObj.alertMessage, myObj));

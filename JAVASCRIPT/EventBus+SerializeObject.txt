@@ -1,0 +1,90 @@
+nc.portlets.constants = {};
+
+    nc.portlets.constants.events = {
+        PORTLETS_READY_EVENT: 'nc.portlets-ready',
+        PREFERENCES_READY_EVENT: 'nc.preferences-ready'
+    };
+
+    nc.portlets.Events = function() {};
+
+    nc.portlets.Events.prototype = {
+        /**
+         * Handle event with name 'eventName'.
+         *
+         * @param {String} eventName
+         * @param {Function} callback - function which will be called when event will be fired.
+         *                              function (data) {} - data - event parameters
+         */
+        on: function(eventName, callback) {
+
+            console.log('start Portlet.on(eventName:%s, callback:%o)', eventName, callback);
+
+            if (!this._eventCallbacks) this._eventCallbacks = [];
+
+            if (!this._eventCallbacks[eventName]) {
+                this._eventCallbacks[eventName] = [];
+            }
+
+            this._eventCallbacks[eventName].push(callback);
+        },
+
+        /**
+         * Remove an event handler with name 'eventName'.
+         *
+         * @param {String} eventName
+         * @param {Function} callback
+         *
+         */
+        off: function(eventName, callback) {
+            var callbacks = this._eventCallbacks[eventName];
+
+            if (!callbacks) return;
+
+            for(var i=0, length=callbacks.length; i<length; i++) {
+                if (callbacks[i] == callback) {
+                    callbacks.splice(i--, 1);
+                }
+            }
+
+        },
+
+        /**
+         * Fires event with name 'eventName' and handle their data
+         *
+         * @param {String} eventName
+         *
+         */
+        fire: function(eventName) {
+            var callbacks = this._eventCallbacks[eventName],
+                data = Array.prototype.slice.call(arguments, 1);
+
+            if (!this._eventCallbacks[eventName]) {
+                return;
+            }
+
+            for (var i=0, length=callbacks.length; i < length; i++) {
+                callbacks[i].apply(this, data);
+            }
+
+            console.log('start Portlet.fire(eventName:%s, data:%o)', eventName, data);
+        }
+    };
+
+    nc.portlets.events = new nc.portlets.Events();
+
+
+ nc.portal.FormManager.serializeObject =  function(formData) {
+        var o = {};
+        var a = formData.serializeArray();
+        $.each(a, function() {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };

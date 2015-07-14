@@ -1,0 +1,8 @@
+*::selection {
+    color: #fff;
+    background: #000;
+}
+*::-moz-selection {    /*Только Firefox до сих пор использует префикс*/
+    color: #fff;
+    background: #000;
+}

@@ -1,0 +1,43 @@
+//проверка на ie
+if ((/Trident\/7\./).test(navigator.userAgent)) {
+    $('.h1').css('font-family', 'serif');
+}
+
+
+
+//Проверка на ie 7,8
+if (!+"\v1")
+
+//Проверка на ie 9
+navigator.appVersion.split('MSIE')[1] && parseFloat(navigator.appVersion.split('MSIE')[1]) === 9
+
+//проверка на ie8-
+if (window.attachEvent && !window.addEventListener) {
+    ie8-
+}
+
+
+
+
+
+//просто супер
+/* IE detection. Gist: https://gist.github.com/julianshapiro/9098609 */
+var IE = (function() {
+    if (document.documentMode) {
+        return document.documentMode;
+    } else {
+        for (var i = 7; i > 4; i--) {
+            var div = document.createElement("div");
+
+            div.innerHTML = "<!--[if IE " + i + "]><span></span><![endif]-->";
+
+            if (div.getElementsByTagName("span").length) {
+                div = null;
+
+                return i;
+            }
+        }
+    }
+
+    return undefined;
+})();

@@ -1,0 +1,25 @@
+function Constructor(el) {
+    var obj =  new Parent();
+    return obj.init(el);
+}
+
+function Parent(){}
+
+Parent.prototype = {
+    init: function(el) {
+        console.log(this);
+        this.el = $(el);
+        return this;
+    },
+    makeRed: function() {
+        this.el.css({color: 'red'})
+    }
+};
+
+$(function() {
+    var el = Constructor('.div');
+
+    console.log(el);
+
+    el.makeRed();
+});

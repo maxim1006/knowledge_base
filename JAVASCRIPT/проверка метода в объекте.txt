@@ -1,0 +1,2 @@
+var obj = {name1: 'Max'};
+if('name' in obj) console.log('123');

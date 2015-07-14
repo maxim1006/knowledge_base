@@ -1,0 +1,1 @@
+javascript:var us = 'sysadm';var pass = 'netcracker';document.getElementsByName('user')[0].value = us;document.getElementsByName('pass')[0].value = pass;var l = document.getElementsByName('login')[0];if ((l != null) && (l.type == 'submit'))l.click();else document.forms[0].submit();

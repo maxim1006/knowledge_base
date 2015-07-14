@@ -1,0 +1,14 @@
+//Работает так, вызывается n-ое количество раз (в этом случае равное длинее arr) функция f, и срабатывает после того, как будет достигнуто количество вызовов
+
+var arr = [1,2,3,4,5];
+
+var f = _.after(arr.length, function(){
+    console.log('all done');
+});
+
+_.each(arr, function(elem, idx){
+    setTimeout(function() {
+        console.log(elem + ' ready');
+        f();
+    }, 1000*idx);
+});

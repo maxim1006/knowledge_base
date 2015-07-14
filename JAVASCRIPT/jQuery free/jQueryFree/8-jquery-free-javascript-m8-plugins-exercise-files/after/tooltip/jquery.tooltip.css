@@ -1,0 +1,10 @@
+#tooltip {
+    left: -99999px;
+    display: inline;
+    position: absolute;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 5px;
+    min-width: 250px;
+}

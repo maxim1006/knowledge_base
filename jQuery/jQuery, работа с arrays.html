@@ -1,0 +1,52 @@
+<html>
+<head>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+	
+		/*var myArray = [1,2,3,3,4,4,5];
+		var myArray2 = [6,7,8];
+		
+		if($.inArray(4, myArray) != -1)
+			console.log("4 is in the array");
+	
+		if($.inArray(44, myArray) != -1)
+			console.log("44 is in the array");
+			
+		$.unique(myArray).reverse();
+		console.log(myArray);
+		
+		$.merge(myArray, myArray2);
+		console.log(myArray);
+		
+		var newArray = $.map(myArray, function(item, idx) {
+			return item * 2;
+		});
+		console.log(newArray);
+		
+		var greppedArray = $.grep(myArray, function(item) {
+			return item%2 == 0;
+		});
+		console.log(greppedArray);*/
+		
+			
+	$(function() {
+		var arr = $.makeArray($("div"));	
+		var newArr = $.map(arr, function(item, idx) {
+			return +$(item).text();
+		});
+		console.log(newArr);
+	});
+		
+	</script>
+	
+	<div id="out1">1</div>
+	<div id="out2">2</div>
+	<div id="out3">3</div>
+	<div id="out4">4</div>
+	<div id="out5">5</div>
+	<div id="out6">6</div>
+	<div id="out7">7</div>
+</body>
+</html>

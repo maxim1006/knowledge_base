@@ -1,0 +1,84 @@
+function get(url) {
+  // Возвращаем новое Обещание.
+  return new Promise(function(resolve, reject) {
+    // Делаем привычные XHR вещи
+    var req = new XMLHttpRequest();
+    req.open('GET', url);
+
+    req.onload = function() {
+      // Этот кусок вызовется даже при 404’ой ошибке
+      // поэтому проверяем статусы ответа
+      if (req.status == 200) {
+        // Завершаем Обещание с текстом ответа
+        resolve(req.response);
+      }
+      else {
+        // Обламываемся, и передаём статус ошибки
+        // что бы облегчить отладку и поддержку
+        reject(Error(req.statusText));
+      }
+    };
+
+    // отлавливаем ошибки сети
+    req.onerror = function() {
+      reject(Error("Network Error"));
+    };
+
+    // Делаем запрос
+    req.send();
+  });
+}
+
+
+
+get('story.json').then(function(response) {
+  console.log("Отлично!", response);
+}, function(error) {
+  console.error("Ошибка!", error);
+});
+
+
+
+function getJSON(url) {
+  return get(url).then(JSON.parse);
+}
+
+
+
+
+
+Очередь асинхронных событий
+
+Ты также можешь связать вызовы then для выполнения асинхронных действий последовательно.
+
+Когда ты возвращаешь что-то из колбэка then, происходит немного магии. Если ты возвращаешь любое значение, это значение передастся функции обратного вызова следующего then. А если ты вернёшь что-то похожее на обещание, следующий then подождёт его и вызовет колбэк только когда оно выполнится. Например:
+
+getJSON('story.json').then(function(story) {
+  return getJSON(story.chapterUrls[0]);
+}).then(function(chapter1) {
+  console.log("Получили первую главу!", chapter1);
+});
+
+
+Здесь мы делаем асинхронный запрос к story.json, а когда получаем в ответе набор URL’ов, мы запрашиваем по первому из них. Тут мы ясно видим как далеко может откатиться яблоко от яблони, преимущество обещаний перед привычным шаблоном колбэков режет глаза. Ты можешь вынести логику запроса статьи в отдельный метод:
+
+var storyPromise;
+
+function getChapter(i) {
+  storyPromise = storyPromise || getJSON('story.json');
+  
+  return storyPromise.then(function(story) {
+    return getJSON(story.chapterUrls[i]);
+  })
+}
+
+// и с лёгкостью использовать его:
+getChapter(0).then(function(chapter) {
+  console.log(chapter);
+  return getChapter(1);
+}).then(function(chapter) {
+  console.log(chapter);
+});
+
+
+Мы не загружаем story.json до первого вызова getChapter, а следующие вызовы getChapter переиспользуют уже выполнившееся обещание загрузки истории и не делают дополнительных запросов. Ох уж эти Обещания!

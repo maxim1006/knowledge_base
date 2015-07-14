@@ -1,0 +1,41 @@
+function declension(number, one, two, five) {
+	number = Math.abs(number);
+	number %= 100;
+	if (number >= 5 && number <= 20) {
+		return five;
+	}
+	number %= 10;
+	if (number == 1) {
+		return one;
+	}
+	if (number >= 2 && number <= 4) {
+		return two;
+	}
+	return five;
+}
+
+$( document ).ready(function() {
+	function update_counter(time, start_time) {
+		var d = Math.floor((time - start_time)/(60*60*24));
+		var h = Math.floor((time - start_time - 60*60*24*d)/(60*60));
+		var m = Math.floor((time - start_time - 60*60*24*d - 60*60*h)/(60));
+		var s = Math.floor((time - start_time - 60*60*24*d - 60*60*h - 60*m));
+		
+		$(".timer .d").html(d);
+		$(".timer .h").html(h);
+		$(".timer .m").html(m);
+		$(".timer .s").html(s);
+		
+		$(".captions .d").html(declension(d, "день", "дня", "дней"));
+		$(".captions .h").html(declension(h, "час", "часа", "часов"));
+		$(".captions .m").html(declension(m, "минута", "минуты", "минут"));
+		$(".captions .s").html(declension(s, "секунда", "секунды", "секунд"));
+	}
+	var time = Math.floor(Date.now() / 1000);
+	var time_start = 1426593082;
+	update_counter(time, time_start);
+	setInterval(function() {
+		time += 1;
+		update_counter(time, time_start);
+	}, 1000)
+});

@@ -1,0 +1,1 @@
+that.options.onHide.call(that.element, container);

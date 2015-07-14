@@ -1,0 +1,157 @@
+background-clip/background-origin - бэкграунд не вытекает за пределы границы, и не налазит на нее
+background-size - задаю масштаб бекграунда
+background: url() no-repeat 0 0, url() repeat 0 bottom, url() no-repeat 0 0 #eee; - несколько бекграундов
+
+
+
+
+Прозрачный фон
+html {
+	height: 100%
+}
+
+body {
+	background: -webkit-linear-gradient(hsl(195,51%,44%), rgba(255,255,255,0) 75%), url('bg.jpg');
+	background: -moz-linear-gradient(hsl(195,51%,44%), rgba(255,255,255,0) 75%), url('bg.jpg');
+	background: -ms-linear-gradient(hsl(195,51%,44%), rgba(255,255,255,0) 75%), url('bg.jpg');
+	background: -o-linear-gradient(hsl(195,51%,44%), rgba(255,255,255,0) 75%), url('bg.jpg');
+	background-size: cover;
+}
+
+
+
+
+transition: all 0.3s ease-out 1s; 
+ - четвертое значение - это задержка начала анимации
+
+http://cubic-bezier.com/ - тут могу потестить cubic-bezier для css анимации
+http://matthewlein.com/ceaser/  - тут могу потестить cubic-bezier для css анимации уже со стилями
+ 
+transform: rotate(2turn) - 2 оборота 
+transform: scaleX(),transform: scaleY(),transform: scale(val, val)
+transform: scewX(),transform: scewY(),transform: scew(val, val)
+transform: translateX(), transform: translateY(), transform: translateX(val, val); - сдвиг относительно существующей позиции
++ transition: transform 1s ease-in-out - запускаю с анимацией 
+transform-origin: 50% 50% (default) - по дефолту крутится вокруг центра фигуры, если изменю 1я - x, 2я - y, будет крутиться вокруг точки, которую укажу
+Если хочу несколько: transform: rotate(2turn) scale(1.2) translateX(200%, -100%);
+transform: rotate3d(X,Y,Z,degrees); (например: transform(1,1,0,65deg) - будет вращаться 65 по x, 65 по y, и 0 по Z), умножаю показатели на градусы.
+transform: translate3d(X, Y, Z);
+
+perspective - определяет положение наблюдателя, откуда он смотрит, определяется для родителя элементов (body например), к которым применяю 3d вращения. (обычно от 800 до 1000), когда есть это свойство могу добаить Z - ось:
+perspective-origin(x, y) - определяет вектор, относительно которого будет анимация, это свойство также применяю к родителю элементов, которые двигаю. Применять с perspective;
+
+transform-style: preserve-3d; - применяю к родителю элементов, к которым применяю transform. Это свойство резервирует место для 3d манипуляций с элементом
+
+backface-visibility: hidden - прячу обратную сторону элемента
+
+
+Анимация:
+animation-name
+animation-duration
+animation-timing-function
+animstion-direction: reverse/alternate;
+animation-fill-mode: backwards - (после окончания анимации сразу начинает первый кадр, работает только если есть задержка) forwards - заканчивает анимацию без прыжка на предыдущую позицию. 
+animation-iteration-count: infinite; - повтор анимации, можно сделать в infinite
+animation-palay-state: paused - не запускать сразу анимацию (а запускать например по hover) по дефолту: running
+
+в одну строчку: animation: имя_анимации время задержка ф-ция кол-во_повторов fill-mode
+например:
+animation: name 3s 2s ease-in-out infinite fill-mode;
+
+В keyframes могу объединить проценты:
+keyframes имя_анимации {
+    0,10%,30% {width: 300px;}
+}
+
+http://www.w3.org/TR/css3-transitions/#animatable-properties - свойства, которые могу анимировать
+
+
+
+MEDIA Quires
+<meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no"> - добавляю этот метатег, чтобы на мобильных устройствах сразу страница отображалась с учетом media quiries. initial-scale - масштаб = 1, user-scalable - отменяю возможность зума
+
+@media screen and (-webkit-min-device-pixel-ratio: 2) {} - разница между разрешением устройства и обычным разрешением, использую для ретины. 1 css пиксель = 2 пикселям на дисплее retina. Использую это для старых webkit браузеров, остальные используют resolution, см. ниже.
+
+@media screen and (-webkit-min-device-pixel-ratio: 1.5), screen and (min-resolution: 144dpi) - добавляю новые картинки для устройств с супер экранами. Не забываю ставить background-size
+
+1 device-pixel-ratio = 96dpi
+
+Если не ставить viewport, то сайт будет виден как zoomed out 980px ширины.
+
+Проверить сайт на различных разрешениях: 
+http://quirktools.com/screenfly/
+
+
+
+Печать страниц
+@media print {} - все стили используются только при печати.
+h2, ul {page-break-after: avoid;}
+p {orphans: 3;widows: 3;}
+@page {margin: .5cm;}
+@page :first {margin-top: 2cm;}
+a[href^="http:"]:after { 
+	content: " [" attr(href) "]";
+	color: blue;
+}
+
+
+
+Типография
+45-75 символов на строке, line-height:1.5
+fittext.js - динамически уменьшает текст
+basehold - добавляет сетку для просмотра, правильно ли расставлен текст (    <link rel="stylesheet" href="http://basehold.it/24">)
+
+---Free Services
+FontSquirrel.com
+The League of Movable Type
+Google Webfonts
+
+---Icon Fonts
+Symbolset
+Pictos
+IcoMoon
+
+-webkit-font-smoothing: antialiased; - ставлю для иконок
+-webkit-font-feature-settings: "liga", "dlig";
+
+JS - для типографии
+FitText.js - заголовков
+Lettering.js - букв
+
+
+Border
+http://border-image.com/ - тут могу сгенерировать границу
+border: 30px solid #000;
+border-image-source: url()
+border-image-slice: 30  fill - обычно ширина границы, но могу задать %hor $vert - определяет как бордер-картинка распределяется по границе. Проценты отсчитываются от картинки бордера и обозначают как будет распределяться картинка, fill - опционально.
+border-image-width: hor_width vert_width;
+border-image-outset - насколько далеко от бокса в котором находится бордер-картинка должна быть
+border-image-repeat: stretch/repeat/round/space - stretch - default, round - удаляет обрезание границ
+border: 30px solid #000;
+border-image: url slice / outset - добавляю слеш между свойствами
+
+
+
+
+Рассчет ems target/context = result, например 24px/16px
+При расчете маргинов внутреннего блока, рассчитываю их тоже относительно родителя, как и ширину блока.
+При расчете паддингов их ширина отсчитывается от ширины самого контейнера.
+
+
+
+
+SVG изображения: 1) Делаю svg через adobe illustrator, затем открываю его как текстовый документ и удаляю width, height.
+2) вставляю в html
+<object data="img/twitter.svg" type="image/svg+xml">
+	<!--[if lte IE 8 ]-->
+	    <img src="img/twitter.gif" alt="Twitter">
+	<!--![endif]-->
+</object>
+3) img, object {
+	max-width: 100%;
+   }
+
+https://github.com/scottjehl/picturefill - picturefill - различные изображения для разных разрешений
+
+
+

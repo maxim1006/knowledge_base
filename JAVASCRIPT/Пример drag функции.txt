@@ -1,0 +1,199 @@
+(function() {
+
+    'use strict';
+
+    var doc = document;
+
+    if (doc.querySelector('.SearchableText') && doc.querySelector('title')) {
+        doc.querySelector('.SearchableText').innerHTML = doc.querySelector('title').innerHTML;
+    }
+
+    var scaleEl = doc.querySelector('.OilRange--scale');
+    var draggerEl = doc.querySelector('.OilRange--dragger');
+    var ruFaceEl = doc.querySelector('.OilMood-faces .OilFace--ru');
+    var saFaceEl = doc.querySelector('.OilMood-faces .OilFace--sa');
+    var usaFaceEl = doc.querySelector('.OilMood-faces .OilFace--usa');
+    var euFaceEl = doc.querySelector('.OilMood-faces .OilFace--eu');
+    var faceEls = {
+        ru: ruFaceEl,
+        sa: saFaceEl,
+        usa: usaFaceEl,
+        eu: euFaceEl
+    };
+    var price = 60;
+    var drops = scaleEl.querySelectorAll('i');
+    var barrelPoints = doc.querySelector('.OilBarrel h3');
+    var isDraggerDragged = false;
+    var startX = 0;
+    var startOffset = 0;
+    var priceToMood = [{
+        from: 10,
+        to: 30,
+        ru: 'mood-1',
+        sa: 'mood-1',
+        usa: 'mood-3',
+        eu: 'mood-6'
+    }, {
+        from: 31,
+        to: 55,
+        ru: 'mood-2',
+        sa: 'mood-4',
+        usa: 'mood-5',
+        eu: 'mood-5'
+    }, {
+        from: 56,
+        to: 80,
+        ru: 'mood-3',
+        sa: 'mood-4',
+        usa: 'mood-6',
+        eu: 'mood-4'
+    }, {
+        from: 81,
+        to: 110,
+        ru: 'mood-5',
+        sa: 'mood-5',
+        usa: 'mood-5',
+        eu: 'mood-3'
+    }, {
+        from: 111,
+        to: 140,
+        ru: 'mood-6',
+        sa: 'mood-6',
+        usa: 'mood-3',
+        eu: 'mood-1'
+    }];
+
+    var onWindowResize = function() {
+        var width = parseInt(getComputedStyle(scaleEl).width ,10) / 13;
+
+        for (var i = 0; i < drops.length; i++) {
+            drops[i].style.left = (width * i - 4.5) + 'px';
+        }
+
+        setSliderPrice(price);
+    };
+
+    var setMood = function(el, mood) {
+        if (!el.classList.contains(mood)) {
+            for (var i = 1; i <= 6; i++) {
+                el.classList.remove('mood-' + i);
+            }
+
+            el.classList.add(mood);
+        }
+    };
+
+    var setPrice = function(price) {
+        barrelPoints.innerHTML = price;
+
+        for (var i = 0; i < priceToMood.length; i++) {
+            var moods = priceToMood[i];
+
+            if (price >= moods.from && price <= moods.to) {
+                for (var key in faceEls) {
+                    setMood(faceEls[key], moods[key]);
+                }
+            }
+        }
+    };
+
+    var setSliderPrice = function(price) {
+        draggerEl.style.left = ((price - 10) * parseInt(getComputedStyle(scaleEl).width ,10)/130 - 25) + 'px';
+    };
+
+    window.addEventListener('resize', function() {
+        onWindowResize();
+    }, false);
+
+    var onDragStart = function(e) {
+        isDraggerDragged = true;
+        if (e.touches) {
+            startX = e.touches[0].pageX;
+        } else {
+            startX = e.pageX;
+        }
+        startOffset = draggerEl.offsetLeft;
+    };
+
+    var onDrag = function(e) {
+        if (isDraggerDragged) {
+            var diff;
+
+            if (e.touches) {
+                diff = e.touches[0].pageX - startX;
+            } else {
+                diff = e.pageX - startX;
+            }
+
+            var maxLeft = parseInt(getComputedStyle(scaleEl).width ,10) - 25;
+            var result;
+
+            if (diff < 0 && Math.abs(diff) >= startOffset + 25) {
+                result = -25;
+            } else if (diff > 0 && diff >= maxLeft - startOffset) {
+                result = maxLeft;
+            } else {
+                result = diff + startOffset;
+            }
+            draggerEl.style.left = result + 'px';
+
+            price = Math.floor((result+25)/(maxLeft+25)*130) + 10;
+
+            setPrice(price);
+        }
+    };
+
+    var onDragEnd = function() {
+        isDraggerDragged = false;
+    };
+
+    var loadCurrentPrice = function() {
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState === 4 ) {
+                if(xmlhttp.status === 200){
+                    var res = JSON.parse(xmlhttp.responseText);
+
+                    price = Math.round(res.brent.current);
+                    setSliderPrice(price);
+                    setPrice(price);
+                }
+            }
+        };
+
+        xmlhttp.open('GET', '/api/v3/stock/all', true);
+        xmlhttp.send();
+    };
+
+    draggerEl.addEventListener('mousedown', function(e) {
+        onDragStart(e);
+    }, false);
+
+    document.addEventListener('mousemove', function(e) {
+        onDrag(e);
+    });
+
+    document.addEventListener('mouseup', function() {
+        onDragEnd();
+    }, false);
+
+    draggerEl.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        onDragStart(e);
+    }, false);
+
+    draggerEl.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+        onDrag(e);
+    }, false);
+
+    draggerEl.addEventListener('touchend', function() {
+        onDragEnd();
+    }, false);
+
+    setSliderPrice(price);
+    setPrice(price);
+    loadCurrentPrice();
+    onWindowResize();
+})();

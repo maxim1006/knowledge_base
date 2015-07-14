@@ -1,0 +1,3 @@
+<a href="tel: +74951234567">+7 (495) 123-45-67</a>
+<a href="mailto: example@mail.ru">example@mail.ru</a>
+<a href="skype: someskype?call">someskype</a>

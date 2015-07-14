@@ -1,0 +1,9 @@
+$.extend($.expr[':'], {  
+    over100pixels: function(a) {  
+        return $(a).height() > 100;  
+    }  
+});  
+  
+$('.box:over100pixels').click(function() {  
+    alert('Элемент, который вы потревожили своим кликом, в высоту более 100 пикселов');
+});  

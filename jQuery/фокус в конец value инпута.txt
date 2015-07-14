@@ -1,0 +1,5 @@
+function focusField($field) {
+        $field.focus();
+        var v = $field.val();
+        $field.get(0).setSelectionRange(v.length, v.length);
+    }

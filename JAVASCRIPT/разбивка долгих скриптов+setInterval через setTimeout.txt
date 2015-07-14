@@ -1,0 +1,32 @@
+//Разбивка долгих скриптов
+setTimeout(function go() {
+  highlight();
+  if (есть еще что подсветить) setTimeout(go, 10);
+}, 10);
+
+
+
+//SetInterval через setTimeout
+function printNumbersTimeout20_100() {
+  var i = 1;
+  var timerId = setTimeout(function go() {
+    console.log(i);
+    if (i < 20) setTimeout(go, 100);
+    i++;
+  }, 100);
+}
+
+// вызов
+printNumbersTimeout20_100();
+
+
+
+//проверяю подгрузился ли элемент
+    setTimeout(function checkWizardlayouLoaded() {
+        if($('.wizard_layout').length === 0) {
+            setTimeout(checkWizardlayouLoaded, 100);
+        } else {
+            setLeftColumnHeight();
+            $(document).on('click', '.roe-table-body', setLeftColumnHeight);
+        }
+    }, 100);

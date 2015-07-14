@@ -1,0 +1,61 @@
+//проверка на буквы
+var lettersRegexp = /^[A-Za-z]+$/;	
+
+
+
+
+
+//проверка на цифры
+var numberRegexp = /^[0-9]+$/;	
+phoneNumber = phoneNumber.replace(/[^0-9]+/g, '');
+
+//Проверка на цифры с экспонентной частью, дробью, - в начале
+var parse_number = /^-?\d+(?:\.\d*)?(?:e[+\-]?\d+)?$/i;
+
+
+
+
+
+//проверка на email
+var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    
+    $('input').on('keydown', function(e) {
+        if ( e.which === 13 ) {
+            if( re.test(this.value) ) {
+                console.log(098);
+            }
+        }
+    });
+
+//так могу раскидать email
+var url = "http://www.ora.com:80/goodparts?q#fragment";
+var result = parse_url.exec(url);
+var names = ['url', 'scheme', 'slash', 'host', 'port',
+'path', 'query', 'hash'];
+var blanks = ' ';
+var i;
+for (i = 0; i < names.length; i += 1) {
+document.writeln(names[i] + ':' +
+blanks.substring(names[i].length), result[i]);
+}
+
+This produces:
+url: http://www.ora.com:80/goodparts?q#fragment
+scheme: http
+slash: //
+host: www.ora.com
+port: 80
+path: goodparts
+query: q
+hash: fragment
+
+
+http://jsfiddle.net/nnm3px7b/
+
+
+
+
+
+//Проверка на дублирование слов
+var doubled_words =
+/[A-Za-z\u00C0-\u1FFF\u2800-\uFFFD'\-]+\s+\1/gi;

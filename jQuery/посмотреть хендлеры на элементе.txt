@@ -1,0 +1,12 @@
+var elem = $('.jsSeparator').get(0);
+$.cache[elem[$.expando]].events
+
+console.dir( $('#someElementId').data('events') );
+
+
+
+или
+
+var a = $('...');
+
+$._data(a.get(0));

@@ -1,0 +1,31 @@
+var count = (function() {
+    var counter = 0;
+    return function(num) {
+        counter = num !== undefined ? num : counter;
+        return counter++;
+    }
+})();
+
+console.log(count());
+console.log(count());
+console.log(count());
+console.log(count());
+console.log(count(0));
+console.log(count());
+console.log(count());
+console.log(count());
+
+
+
+function count(num) {
+    count.counter = num !== undefined ? num : count.counter;
+    return count.counter++;
+}
+
+count.counter = 0;
+
+console.log(count());
+console.log(count());
+console.log(count(0));
+console.log(count());
+console.log(count());

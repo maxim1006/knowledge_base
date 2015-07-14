@@ -1,0 +1,40 @@
+@media print {
+    * {
+        background: transparent !important;
+        box-shadow: none !important;
+        color: #000 !important; /* Black prints faster */
+        text-shadow: none !important;
+    }
+	.main-nav, 
+	.sidebar, 
+	.comments, 
+	.main-footer,
+	img {
+		display: none;
+	}
+	.main-header {
+		margin-bottom: 0;
+		border: none;
+		text-align: center;
+	}
+	a[href^="http:"]:after { 
+		content: " [" attr(href) "]";
+		color: blue;
+	}
+	@page { 
+		margin: .5cm; 
+	}
+	@page :first { 
+		margin-top: 2cm;
+	}
+ 	h2, ul {
+ 		page-break-after: avoid;
+	}
+    p, ul {
+        orphans: 3;
+        widows: 3;
+        font-size: 11pt;
+    }
+}
+
+
