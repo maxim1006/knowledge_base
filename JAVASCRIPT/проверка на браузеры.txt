@@ -1,26 +1,38 @@
-//проверка на ie
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ ie
 if ((/Trident\/7\./).test(navigator.userAgent)) {
     $('.h1').css('font-family', 'serif');
 }
 
 
 
-//Проверка на ie 7,8
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ ie 7,8
 if (!+"\v1")
 
-//Проверка на ie 9
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ ie 9
 navigator.appVersion.split('MSIE')[1] && parseFloat(navigator.appVersion.split('MSIE')[1]) === 9
 
-//проверка на ie8-
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ ie8-
 if (window.attachEvent && !window.addEventListener) {
     ie8-
 }
 
+//РїСЂРѕРІРµСЂРєР° РЅР° ie
+if(navigator.appName == 'Microsoft Internet Explorer')
+{
+    var agent = navigator.userAgent;
+    if (agent.match(/MSIE ([0-9]{1,}[\.0-9]{0,})/) != null){
+        var version = parseFloat( RegExp.$1 );
+        if(version < 11)
+          return true;
+    }
+}
+return false;
 
 
 
 
-//просто супер
+
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 /* IE detection. Gist: https://gist.github.com/julianshapiro/9098609 */
 var IE = (function() {
     if (document.documentMode) {
