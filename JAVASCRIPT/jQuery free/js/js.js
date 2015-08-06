@@ -1,4 +1,141 @@
+//Функция throttle
+/*function throttle(f, ms) {
+    var isThrottled = false,
+        savedArgs,
+        savedThis;
 
+    function wrapper() {
+        if (isThrottled) {
+            savedArgs = arguments;
+            savedThis = this;
+            return
+        }
+
+        f.apply(this, arguments);
+        isThrottled = true;
+
+        setTimeout(function() {
+            isThrottled = false;
+            if (savedArgs) {
+                wrapper.apply(savedThis, savedArgs);
+                savedArgs = savedThis = null;
+            }
+        }, ms);
+    }
+
+    return wrapper;
+}*/
+
+//Кастомная функция задержки
+/*function delay(f, ms) {
+    var savedThis = this,
+        savedArgs = arguments;
+
+    setTimeout(function() {
+        f.apply(savedThis, savedArgs);
+    }, ms);
+}
+
+console.log(new Date);
+
+function f() {
+    console.log(new Date);
+}
+
+delay(f, 3000);*/
+
+//Типы
+/*console.log(typeof 1);
+console.log(typeof true);
+console.log(typeof 'text');
+console.log(typeof undefined);
+console.log(typeof function() {});
+console.log(typeof null); //Object
+console.log(typeof Object); //function
+console.log(typeof []);
+console.log(Array.isArray([])); //true*/
+
+/*function getClass(obj) {
+    return {}.toString.call(obj).slice(8, -1);
+}*/
+
+//Кеширующий декоратор
+/*function makeCaching(f) {
+    var cache = {};
+
+    return function(x) {
+        if (!(x in cache)) {
+            cache[x] = f.call(this, x);
+        }
+        return cache[x];
+    };
+}
+
+function f(x) {
+    return Math.random()*x;
+}
+
+f = makeCaching(f);
+
+var a = f(1);
+var b = f(1);
+
+console.log(a === b);
+
+b = f(2);
+console.log(a === b);*/
+
+//декоратор для подсчета времени выполнения функции с примером использования
+/*
+var timers = {};
+
+function timingDecorator(f, timer) {
+    return function() {
+        var start = new Date;
+
+        var result = f.apply(this, arguments);
+
+        if (!timers[timer]) timers[timer] = 0;
+        timers[timer] += new Date - start;
+
+        return result;
+    }
+}
+
+function fibo(n) {
+    return (n > 2) ? fibo(n - 1) + fibo(n - 2) : 1;
+}
+
+fibo = timingDecorator(fibo, "fibo");
+
+console.log((fibo(10)));
+console.log((fibo(20)));
+console.log(timers.fibo + ' ms');
+*/
+
+//Кроссбраузерный bind
+/*function bind(f, context) {
+    return function() {
+        return f.apply(context, arguments);
+    }
+}*/
+
+//получить максимум из элементов arr
+//Math.max.apply(null, arr);
+
+//Проверка а число
+/*function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}*/
+
+//функция для замера времени выполнения
+/*
+function bench(f) {
+    var date = new Date();
+    for (var i = 0; i < 100000; i++) f();
+    return new Date() - date;
+}
+*/
 
 //функция unique
 /*var arr = ['Max', 'Aliya', 'Max'];
@@ -563,7 +700,7 @@ function removeClass(elCls, cls) {
 // document.getElementById('id').addEventListener('click', callback);
 // function callback(e) {
 //     var elem = e.target, found = false;
-    
+
 //     while (elem instanceof Element &&
 //         !(found = elem.matches('input')) &&
 //         this !== elem) {
@@ -703,7 +840,7 @@ function removeClass(elCls, cls) {
 // $$("div.class").forEach(function(elem, index) {
 //     elem.innerText = "Hello" + index;
 // });
-    
+
 // languages = languages.filter(function(language) {
 //     return ~language.id.indexOf("Script");
 // });
