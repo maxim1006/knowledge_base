@@ -1,0 +1,43 @@
+._unselectable-drag {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+._unselectable-drag ::selection {
+    background: transparent;
+    color: inherit
+}
+
+._unselectable-drag ::-moz-selection {
+    background: transparent;
+    color: inherit
+}
+
+/**
+     * off selection from element
+     */
+    function turnOffSelection(el) {
+        el.attr('unselectable','on')
+            .addClass('_unselectable-drag')
+            .on('selectstart', returnFalse);
+    }
+
+
+    /**
+     * on selection from element
+     */
+    function turnOnSelection(el) {
+        el.removeAttr('unselectable')
+            .removeClass('_unselectable-drag')
+            .off('selectstart', returnFalse);
+    }
+
+
+    /**
+     * return false function, need for select logic
+     */
+    function returnFalse(){
+        return false;
+    }
