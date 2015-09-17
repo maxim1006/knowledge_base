@@ -75,7 +75,7 @@ ctrl+d - дать знак к окончанию программы
 
 
 Поиск файлов и каталогов
-find . -name '<name>'
+find . -name '<name>' (find -name "*.css" - найти все css)
 - найти файлы по имени
 find . -size +1M
 - найти файлы размером более 1МБ
@@ -117,4 +117,5 @@ tail -f - выводит строки добавляемые в файл
 PropsValues.SESSION_TIMEOUT
 
 
-
+Посмотреть на какие порты смотрит nginx
+tasklist /fi "imagename eq nginx.exe"

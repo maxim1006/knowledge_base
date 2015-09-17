@@ -10,11 +10,18 @@ npm r имя_модуля - удалить модуль
 npm init (создает package.json)
 npm adduser
 npm publish
-
+npm unpublish
 
 
 /****Iris npm****/
 Это хранилище приватных модулей
+
+
+/*******tilda and caret*********/
+~ - будет грузить 1.2.3 вместо 1.2.2 (the most recent minor version)(the middle number)
+^ -  It will update you to the most recent major version (the first number) 2.0 вместо 1.0
+latest
+
 
 
 

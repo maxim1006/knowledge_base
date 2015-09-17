@@ -7,3 +7,12 @@ $.extend($.expr[':'], {
 $('.box:over100pixels').click(function() {  
     alert('Элемент, который вы потревожили своим кликом, в высоту более 100 пикселов');
 });  
+
+
+$.extend($.expr[':'], {
+    toowide: function(e) {
+        return $(e).width() > 640;
+    }
+});
+ 
+$('.box:toowide').hide();

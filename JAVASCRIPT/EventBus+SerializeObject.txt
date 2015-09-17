@@ -73,6 +73,8 @@ nc.portlets.constants = {};
     nc.portlets.events = new nc.portlets.Events();
 
 
+
+//Получаю значения из формы в виде array, готовой для сериализации
  nc.portal.FormManager.serializeObject =  function(formData) {
         var o = {};
         var a = formData.serializeArray();
@@ -88,3 +90,5 @@ nc.portlets.constants = {};
         });
         return o;
     };
+
+использование: JSON.stringify(nc.portal.FormManager.serializeObject(this.content.find(".js-formAccount")))
