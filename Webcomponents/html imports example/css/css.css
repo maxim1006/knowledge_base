@@ -1,0 +1,110 @@
+/** * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/) * http://cssreset.com */html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,time, mark, audio, video {    margin: 0;  padding: 0; border: 0;  font-size: 100%;    font: inherit;  vertical-align: baseline;}/* HTML5 display-role reset for older browsers */article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {    display: block;}body {  line-height: 1;}ol, ul {    list-style: none;}blockquote, q {   quotes: none;}blockquote:before, blockquote:after,q:before, q:after {   content: '';    content: none;}table {  border-collapse: collapse;  border-spacing: 0;}
+
+.form {
+    margin: 30px auto;
+    border: 1px solid #ccc;
+    width: 60%;
+    max-width: 400px;
+    background: #fff;
+    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(204,204,204,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(204,204,204,1)));
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(204,204,204,1) 100%);
+    background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(204,204,204,1) 100%);
+    background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(204,204,204,1) 100%);
+    background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(204,204,204,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cccccc',GradientType=0 );
+}
+
+.inner {
+    padding: 30px;
+}
+
+.item:first-child {
+    margin-top: 0;
+}
+
+.item {
+    margin: 20px 0;
+    font-size: 0;
+}
+
+.item:last-child {
+    margin-bottom: 0;
+}
+
+.item__inner {
+    position: relative;
+}
+
+.item_btn {
+    text-align: center;
+}
+
+.form input:focus {
+    outline: 2px solid #5b91ba;
+    box-shadow: 0 0 3px #ccc;
+}
+
+.field-item {
+    border: 0;
+    box-shadow: inset 0 0 3px #333;
+    font: 18px Georgia,"Times New Roman",Times,serif;
+    color: #000;
+    width: 100%;
+    padding: 5% 5% 5% 35px;
+    outline: 0;
+    display:-moz-inline-stack;
+    display:inline-block;
+    vertical-align: middle;
+    zoom: 1;
+    *display:inline;
+
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+
+}
+
+.field-item_name {
+    text-transform: uppercase;
+    padding: 5%;
+}
+
+.phone,
+.name {
+    display: block;
+    margin-bottom: 10px;
+    font: 16px Arial;
+    color: #000;
+    cursor: pointer;
+}
+
+.name {
+    width: 100%;
+}
+
+.phone-code {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    width: 10%;
+    margin-right: 4%; 
+    margin-top: -12px;
+    font: 18px/1.2 Georgia,"Times New Roman",Times,serif;
+}
+
+.submit {
+    border: 0;
+    outline: 0;
+    width: 130px;
+    height: 36px;
+    position: relative;
+    font-size: 18px;
+    border: 1px solid #999;
+    box-shadow: 0 0 10px #ccc;
+    cursor: pointer;
+}
+
+input[disabled*="disabled"] {
+    cursor: default;
+}

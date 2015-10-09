@@ -1,3 +1,32 @@
+//получить введенный символ с клавиатуры
+/*function getChar(event) {
+    if (event.which == null) {
+        if (event.keyCode < 32) return null;
+        return String.fromCharCode(event.keyCode) // IE
+    }
+
+    if (event.which != 0 && event.charCode != 0) {
+        if (event.which < 32) return null;
+        return String.fromCharCode(event.which) // остальные
+    }
+
+    return null; // специальная клавиша
+}*/
+//по нажатию отследить цифры
+/*
+moneyElem.onkeypress = function(e) {
+    e = e || event;
+    var chr = getChar(e);
+
+    console.log(chr);
+
+    if (e.ctrlKey || e.altKey || chr == null) return; // специальная клавиша
+    if (chr < '0' || chr > '9') return false;
+};
+*/
+
+
+
 //Функция throttle
 /*function throttle(f, ms) {
     var isThrottled = false,

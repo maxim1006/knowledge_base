@@ -1,0 +1,22 @@
+ if ($('html').hasClass('ie9')) this.setPlaceholders(element);
+
+
+        setPlaceholders: function(element) {
+            var $container = $(element),
+                $input = $container.find('input, textarea'),
+                inputValue = $input.val(),
+                $placeholderElem = $container.find('.jsFormInputPlaceholder');
+
+            if (inputValue && inputValue.trim()) {
+                $placeholderElem.hide();
+            }
+
+            $input
+                .on('blur', function() {
+                    inputValue = $input.val();
+                    $placeholderElem.toggle(!(!!inputValue.trim()));
+                })
+                .on('keyDown focus', function() {
+                    $placeholderElem.hide();
+                });
+        }

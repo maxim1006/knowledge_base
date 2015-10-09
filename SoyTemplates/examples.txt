@@ -1,0 +1,12 @@
+//Посчитать количество элементов
+{let $test}
+     {foreach $b in $bundles}
+                /*{call .bundleItem}
+                    {param bundle: $b /}
+                    {param type: $type /}
+                    {param modificationDisabled: $modificationDisabled /}
+                {/call}*/
+      {if $b}1{else}0{/if}
+     {/foreach}
+{/let}
+{if $test}{length($test)}{/if}
