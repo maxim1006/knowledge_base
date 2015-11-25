@@ -1,0 +1,3 @@
+$element.on('transitionend webkitTransitionEnd oTransitionEnd', function () {
+    // your event handler
+});
