@@ -1,0 +1,23 @@
+(function() {
+
+
+
+    var navTabs = function () {...};
+
+    //AMD, commonJS, global scope wrapper
+    var com;
+
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], navTabs);
+    } else if (typeof module !== 'undefined' && module.exports) {
+        module.exports = navTabs();
+    } else {
+        com = window.com || {};
+        com.netcracker = com.netcracker || {};
+        com.netcracker.ux = com.netcracker.ux || {};
+        com.netcracker.ux.navTabs = navTabs();
+    }
+
+
+
+})();
