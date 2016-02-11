@@ -23,5 +23,6 @@ npm unpublish
 latest
 
 
-
+/*********при npm i может возникнуть ошибка о том, что не может подключиться 
+git config --global url.https://github.com/.insteadOf git://github.com/
 
