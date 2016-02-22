@@ -22,9 +22,10 @@ npm unpublish
 ^ -  It will update you to the most recent major version (the first number) 2.0 вместо 1.0
 latest
 
-/*********чтобы исправить ошибку гит
+/*********чтобы исправить ошибку гит**/
 git config --global url.https://github.com/.insteadOf git://github.com/
 
-
+/***Чтобы посмотреть проект на гитхаб**/
+npm repo имя_пакета
 
 
