@@ -1,26 +1,29 @@
-npm s ���_����_���_��� - ����� �������
-npm i ���_������ - ����������� ������, ����� ������������� ���������� ������ ����� ��� npm i ���_������@������_������
-npm -g i express - ��������� ������ ���������
-npm up ���_������ - ������ ������ ���� ������� ���� �� ��������� ����������
-npm r ���_������ - ������� ������
+npm s имя_того_что_ищу - поиск модулей
+npm i имя_модуля - инсталляция модуля, чтобы проинсталлить конкретную версию делаю так npm i имя_модуля@версия_модуля
+npm -g i express - поставить модуль глобально
+npm up имя_модуля - апдейт модуля всех модулей если не указывать конкретный
+npm r имя_модуля - удалить модуль
 
 
 
-/****����� ������������ ������ npm****/
-npm init (������� package.json)
+/****Чтобы опубликовать модуль npm****/
+npm init (создает package.json)
 npm adduser
 npm publish
 npm unpublish
 
 
 /****Iris npm****/
-��� ��������� ��������� �������
+Это хранилище приватных модулей
 
 
 /*******tilda and caret*********/
-~ - ����� ������� 1.2.3 ������ 1.2.2 (the most recent minor version)(the middle number)
-^ -  It will update you to the most recent major version (the first number) 2.0 ������ 1.0
+~ - будет грузить 1.2.3 вместо 1.2.2 (the most recent minor version)(the middle number)
+^ -  It will update you to the most recent major version (the first number) 2.0 вместо 1.0
 latest
+
+/*********чтобы исправить ошибку гит
+git config --global url.https://github.com/.insteadOf git://github.com/
 
 
 
