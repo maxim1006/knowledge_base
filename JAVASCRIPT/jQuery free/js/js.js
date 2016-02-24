@@ -1,3 +1,14 @@
+//isInteger
+/*Number.isInteger(value)
+
+Number.isInteger = Number.isInteger || function(value) {
+    return typeof value === 'number'
+        && isFinite(value)
+        && Math.floor(value) === value;
+};*/
+
+
+
 //получить введенный символ с клавиатуры
 /*function getChar(event) {
     if (event.which == null) {
