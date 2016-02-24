@@ -25,6 +25,8 @@ latest
 /*********чтобы исправить ошибку гит**/
 git config --global url.https://github.com/.insteadOf git://github.com/
 
+git config --system core.longpaths true
+
 /***Чтобы посмотреть проект на гитхаб**/
 npm repo имя_пакета
 
