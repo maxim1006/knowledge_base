@@ -1,0 +1,5 @@
+svgG.css({
+                    'transform': transformStr,
+                    '-ms-transform': transformStr,
+                    '-webkit-transform': transformStr
+                });
