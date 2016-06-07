@@ -23,7 +23,8 @@ npm unpublish
 latest
 
 /*********чтобы исправить ошибку гит**/
-git config --global url.https://github.com/.insteadOf git://github.com/
+git config --global url."https://github.com/".insteadOf git@github.com:
+git config --global url."https://".insteadOf git://
 
 git config --system core.longpaths true
 
