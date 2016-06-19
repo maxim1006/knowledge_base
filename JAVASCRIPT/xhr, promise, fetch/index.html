@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+    //Variant 1
+    /*var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', './json.json', true);
+
+    xhr.send();
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState !== 4) return;
+
+        if (xhr.status !== 200) {
+            console.log('error', xhr.status, xhr.statusText);
+        } else {
+            console.log(xhr.responseText);
+        }
+    };*/
+
+    //Variant 2
+    /*var xhr = new XMLHttpRequest();
+
+    xhr.open("GET", "./json.json", true);
+
+    xhr.send();
+
+    xhr.onload = function() {
+        if (this.status == 200) {
+            console.log(this.response);
+        } else {
+            console.log('error', this.status, this.statusText);
+        }
+    };
+
+    xhr.onerror = function(e) {
+        console.log('error', e);
+    }*/
+
+    //With promise
+    /*function httpGet(url) {
+
+        return new Promise(function(resolve, reject) {
+            var xhr = new XMLHttpRequest();
+
+            xhr.open("GET", url, true);
+
+            xhr.send();
+
+            xhr.onload = function() {
+                if (this.status !== 200) {
+                    var error = new Error(this.statusText);
+                    error.status = this.status;
+                    //console.log('error', this.status, this.statusText);
+                    reject(error);
+                } else {
+                    //console.log(this.response);
+                    resolve(this.response);
+                }
+            }
+
+        });
+
+    }
+
+    httpGet("json.json1").then(function(data) {
+        console.log("data", data);
+    }, function(e) {
+        console.log("error", e);
+    }).catch(function(e) {
+        console.log("error", e);  //сработает только этот, так как предыдущий кетч пробросит сюда ошибку
+    });*/
+
+    //Fetch
+    fetch("json.json")
+            .then(
+                (data) => {
+                    console.log(data);
+                    return data.json();
+                })
+            .then((data) => console.log(data));
+</script>
+
+</body>
+</html>
