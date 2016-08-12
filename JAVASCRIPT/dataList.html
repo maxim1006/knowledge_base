@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #input {
+            width: 100px;
+        }
+
+        #select {
+            width: 100px;
+            max-height: 100px;
+        }
+
+        .wrapper {
+            max-height: 100px;
+        }
+
+        .cloud-input {
+            width: 100%;
+        }
+
+        .cloud-select {
+            opacity: 0;
+            position: absolute;
+            left: -9999px;
+        }
+
+        .select-wrapper {
+            position: relative;
+            width: 200px;
+            margin: 20px;
+        }
+
+        .cloud-fake-select__list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            max-height: 200px;
+            overflow: auto;
+        }
+
+        .cloud-fake-select {
+            display: none;
+        }
+        
+        .cloud-fake-select__option:hover {
+            background-color: #f3f3f3;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="select-wrapper" class="select-wrapper">
+
+    <input type="text" id="cloudInput" class="cloud-input">
+
+    <select name="" id="cloudSelect" class="cloud-select">
+        <option value="">Max</option>
+        <option value="">Aliya</option>
+        <option value="">Efim</option>
+        <option value="">Ura</option>
+        <option value="">Sergey</option>
+        <option value="">6</option>
+        <option value="">7</option>
+        <option value="">8</option>
+        <option value="">9</option>
+        <option value="">10</option>
+        <option value="">11</option>
+        <option value="">12</option>
+        <option value="">13</option>
+        <option value="">14</option>
+        <option value="">15</option>
+        <option value="">16</option>
+        <option value="">17</option>
+        <option value="">18</option>
+        <option value="">19</option>
+        <option value="">20</option>
+    </select>
+
+    <div id="cloudFakeSelect" class="cloud-fake-select">
+        <div id="cloudFakeSelectList" class="cloud-fake-select__list"></div>
+    </div>
+
+</div>
+
+
+<script>
+
+
+    (function() {
+
+        var cloudInput = document.querySelector('#cloudInput'),
+            cloudSelect = document.querySelector('#cloudSelect'),
+            cloudFakeSelect = document.querySelector('#cloudFakeSelect'),
+            cloudFakeSelectHeader = document.querySelector('#cloudFakeSelectHeader'),
+            cloudFakeSelectList = document.querySelector('#cloudFakeSelectList'),
+            initOptions = cloudSelect.options,
+            initOptionsArr = [].slice.call(cloudSelect.options);
+
+
+        bundleHandlers();
+        setOptionsToFakeSelect(initOptions);
+
+
+
+        function bundleHandlers() {
+            cloudInput.addEventListener('input', function() {
+                var input = this.value;
+                clearFakeSelect();
+                setOptionsToFakeSelect(filterOptions(input));
+            });
+
+            cloudFakeSelectList.addEventListener('mousedown', function(e) {
+                 var target = e.target;
+
+                 if (target.classList.contains('cloud-fake-select__option')) {
+                     cloudInput.value = target.textContent;
+
+                     if ("createEvent" in document) {
+                         var evt = document.createEvent("HTMLEvents");
+                         evt.initEvent("input", false, true);
+                         cloudInput.dispatchEvent(evt);
+                     } else {
+                         cloudInput.fireEvent("input");
+                     }
+
+                     cloudFakeSelect.style.display = 'none';
+                 }
+            });
+
+            cloudInput.addEventListener('focus', function() {
+                cloudFakeSelect.style.display = 'block';
+            });
+
+            cloudInput.addEventListener('blur', function() {
+                cloudFakeSelect.style.display = 'none';
+            });
+        }
+
+        function clearFakeSelect() {
+            cloudFakeSelectList.innerHTML = null;
+        }
+
+        function filterOptions(input) {
+            return initOptionsArr.filter(function(item, idx, arr) {
+                return item.text.toLowerCase().indexOf(input.toLowerCase()) !== -1;
+            });
+        }
+
+        function setOptionsToFakeSelect(options) {
+            var l = options.length,
+                i = 0,
+                list = document.createElement('div'),
+                item;
+
+            for (; i < l; i++) {
+                item = document.createElement('div');
+                item.classList.add('cloud-fake-select__option');
+                item.textContent = options[i].text;
+                list.appendChild(item);
+            }
+
+            cloudFakeSelectList.appendChild(list);
+        }
+
+    })();
+
+
+</script>
+
+</body>
+</html>
