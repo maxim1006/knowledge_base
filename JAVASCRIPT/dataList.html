@@ -60,6 +60,8 @@
 </head>
 <body>
 
+<div id="eventDiv">Event div</div>
+
 <div id="select-wrapper" class="select-wrapper">
 
     <input type="text" id="cloudInput" class="cloud-input">
@@ -174,6 +176,16 @@
         }
 
     })();
+
+    eventDiv.addEventListener('click', function() {
+       console.log("eventDiv is clicked");
+    });
+
+    var event = new CustomEvent('click', {
+        bubbles: true
+    });
+
+    eventDiv.dispatchEvent(event);
 
 
 </script>

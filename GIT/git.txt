@@ -134,3 +134,7 @@ https://github.com/nvie/gitflow
 //сделать удаленную папку и локальную
 git config branch.master.remote origin
 git config branch.master.merge refs/heads/master
+
+
+//посмотреть репозиторий git remote show origin
+
