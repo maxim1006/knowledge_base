@@ -1,0 +1,273 @@
+<html>
+<head>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .svg-wrapper {
+            position: relative;
+            height: 100px;
+            width: 100px;
+            margin: 30px;
+        }
+
+        .svg-wrapper._little {
+            height: 16px;
+            width: 16px;
+        }
+
+        .svg-wrapper._little .svg-radial__circle {
+            stroke-width: 2px;
+            transition: stroke-dashoffset 1s, stroke-width 0.4s;
+        }
+
+        .svg-wrapper._finished .svg-radial__circle {
+            stroke-width: 14px;
+        }
+
+        .svg-wrapper._blue .svg-radial__circle {
+            stroke: #4b8ab8;
+        }
+
+        .svg-wrapper._white .svg-radial__circle {
+            stroke: #fff;
+        }
+
+        .svg-wrapper._rotate {
+            animation: blue-loader 1s linear infinite;
+        }
+
+        .svg-wrapper._finished .svg-radial {
+            border-radius: 50%;
+        }
+
+        .svg-wrapper._no-margin {
+            margin: 0;
+        }
+
+        .svg-wrapper:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 10px solid #e8e8e8;
+            border-radius: 50%;
+            box-sizing: border-box;
+        }
+
+        .svg-wrapper._little:after {
+            border: 2px solid #e8e8e8;
+        }
+
+        .svg-wrapper._white:after {
+            border: 2px solid transparent;
+        }
+
+        .svg-radial {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .svg-radial__circle {
+            fill: transparent;
+            transition: stroke-dashoffset 1s;
+            stroke: green;
+            stroke-width: 10px;
+        }
+
+        @keyframes blue-loader {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="svg-wrapper">
+    <svg class="svg-radial" id="svgRadialBig"
+         viewBox="0 0 100 100"
+
+         version="1.1"
+         xmlns="http://www.w3.org/2000/svg"
+    >
+        <circle
+                class="svg-radial__circle"
+                stroke-dasharray="314"
+                stroke-dashoffset="314"
+                r="45"
+                cx="50"
+                cy="50"
+        ></circle>
+    </svg>
+</div>
+
+
+<div class="svg-wrapper _little _blue">
+    <svg class="svg-radial _little jsRadialLittle"
+         version="1.1"
+         xmlns="http://www.w3.org/2000/svg"
+    >
+        <circle
+                class="svg-radial__circle"
+                stroke-dasharray="44"
+                stroke-dashoffset="44"
+                r="7"
+                cx="8"
+                cy="8"
+        ></circle>
+
+        <path
+                class="svg-radial__checkmark"
+                fill="none"
+                d="M4 8 L7 12 L12 4"
+                stroke="#fff"
+                stroke-width="1"
+        ></path>
+    </svg>
+</div>
+
+
+<div class="svg-wrapper _little _blue _rotate">
+    <svg class="svg-radial _little" id="svgRadialLittleDev"
+         viewBox="0 0 16 16"
+
+         version="1.1"
+         xmlns="http://www.w3.org/2000/svg"
+    >
+        <circle
+                class="svg-radial__circle"
+                stroke-dasharray="44"
+                stroke-dashoffset="11"
+                r="7"
+                cx="8"
+                cy="8"
+        ></circle>
+
+        <path
+                class="svg-radial__checkmark"
+                fill="none"
+                d="M4 8 L7 12 L12 4"
+                stroke="#fff"
+                stroke-width="1"
+        ></path>
+    </svg>
+</div>
+
+
+<div style="margin: 30px;background-color:#4b8ab8;width:16px;height: 16px;">
+    <div class="svg-wrapper _little _white _no-margin">
+        <svg class="svg-radial _little jsRadialLittle"
+             version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+        >
+            <circle
+                    class="svg-radial__circle"
+                    stroke-dasharray="44"
+                    stroke-dashoffset="44"
+                    r="7"
+                    cx="8"
+                    cy="8"
+            ></circle>
+
+            <path
+                    class="svg-radial__checkmark"
+                    fill="none"
+                    d="M4 8 L7 12 L12 4"
+                    stroke="#4b8ab8"
+                    stroke-width="1"
+            ></path>
+        </svg>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    ;
+    (function ($) {
+
+        $('#svgRadialBig').on('click', function () {
+            var $circle = $(this).find('.svg-radial__circle');
+
+            if (+parseFloat($circle.css('stroke-dashoffset'))) {
+                $circle.css('stroke-dashoffset', 0);
+            } else {
+                $circle.css('stroke-dashoffset', 314 + 'px');
+            }
+        });
+
+        $('.jsRadialLittle').on('click', function () {
+            var $this = $(this),
+                $circle = $this.find('.svg-radial__circle');
+
+            if (+parseFloat($circle.css('stroke-dashoffset'))) {
+                $circle.css('stroke-dashoffset', 0);
+
+                $circle.on('transitionend webkitTransitionEnd oTransitionEnd', function () {
+                    $this
+                            .closest('.svg-wrapper')
+                            .addClass('_finished');
+                    $circle.off('transitionend webkitTransitionEnd oTransitionEnd');
+                });
+            } else {
+                $circle.css('stroke-dashoffset', 44 + 'px');
+
+                $this
+                        .closest('.svg-wrapper')
+                        .removeClass('_finished');
+            }
+        });
+
+        $('#svgRadialLittleDev').on('click', function () {
+            var $this = $(this),
+                $circle = $this.find('.svg-radial__circle');
+
+            if (+parseFloat($circle.css('stroke-dashoffset'))) {
+                $circle.css('stroke-dashoffset', 0);
+
+                $circle.on('transitionend webkitTransitionEnd oTransitionEnd', function () {
+                    $circle.off('transitionend webkitTransitionEnd oTransitionEnd');
+
+                    $this
+                            .closest('.svg-wrapper')
+                            .addClass('_finished');
+
+                    $this
+                            .closest('.svg-wrapper')
+                            .removeClass('_rotate');
+
+                    $circle.on('transitionend webkitTransitionEnd oTransitionEnd', function () {
+                        $circle.off('transitionend webkitTransitionEnd oTransitionEnd');
+                        $this.delay(500).fadeOut(300);
+                    });
+                });
+            } else {
+                $circle.css('stroke-dashoffset', 44 + 'px');
+
+                $this
+                        .closest('.svg-wrapper')
+                        .removeClass('_finished');
+            }
+        });
+
+    })(jQuery);
+</script>
+
+
+</body>
+</html>
