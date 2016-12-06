@@ -412,6 +412,13 @@ test(1,2,3); // true*/
 // console.log(randomItem);
 
 
+//random id
+// function generateId() {
+//     return (Math.random() + "").substr(2) + "__" + Date.now();
+// }
+//
+// console.log(generateId()); //2538671640213579__1481046038321
+
 //Нахожу минимальное и максимальное значение в array
 // function smallest(arr) {
 //     return Math.min.apply(Math, arr);
