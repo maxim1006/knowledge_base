@@ -1,31 +1,31 @@
-var str = '';
-
-for (var i=0; i<1000; i++) {
-    str+= '<div class="block">asdfaasdf</div>'
-}
-
-requestID = window.requestAnimationFrame(function(time) {
-    console.log(time);
-    $('body').append(str);
-    console.log('callback done');
-});
-
-var a = 0;
-
-//c requestAnimationFrame
-(function animloop(){
-    var globalID = requestAnimationFrame(animloop);
-
-    render();
-
-    function render() {
-        if (a===300) cancelAnimationFrame(globalID);
-        $('body').css({'margin-top': a});
-        a++;
-        console.log(a);
-    }
-
-})();
+// var str = '';
+//
+// for (var i=0; i<1000; i++) {
+//     str+= '<div class="block">asdfaasdf</div>'
+// }
+//
+// requestID = window.requestAnimationFrame(function(time) {
+//     console.log(time);
+//     $('body').append(str);
+//     console.log('callback done');
+// });
+//
+// var a = 0;
+//
+// //c requestAnimationFrame
+// (function animloop(){
+//     var globalID = requestAnimationFrame(animloop);
+//
+//     render();
+//
+//     function render() {
+//         if (a===300) cancelAnimationFrame(globalID);
+//         $('body').css({'margin-top': a});
+//         a++;
+//         console.log(a);
+//     }
+//
+// })();
 
 
 //c setInterval
@@ -139,3 +139,16 @@ var a = 0;
 //})();
 //// place the rAF *before* the render() to assure as close to
 //// 60fps with the setTimeout fallback.
+
+
+var fps = 1;
+
+function animate() {
+    setTimeout(function () {
+        requestAnimationFrame(animate);
+
+        console.log(new Date);
+
+    }, 1000 / fps);
+}
+animate();
