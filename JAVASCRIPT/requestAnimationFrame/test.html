@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .div {
+            width: 10px;
+            height: 10px;
+            margin: 1px;
+            background-color: #cccccc;
+            position: absolute;
+            top: 0;
+            left: 1px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="wrapper"></div>
+
+
+<script>
+
+    let elemsLength = 100,
+        elem;
+
+    while (elemsLength--) {
+        elem = document.createElement('div');
+        elem.classList.add('div');
+        elem.style.top = elemsLength*11 + 'px';
+        wrapper.appendChild(elem);
+    }
+
+    window.requestAnimFrame = (function (callback) {
+        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
+                window.setTimeout(callback, 1000 / 60);
+            };
+    })();
+
+    let div = document.querySelectorAll('.div');
+
+    function go () {
+        //div.style.left += 1;
+        [...div].forEach((el)=> {
+            el.style.left = parseFloat(getComputedStyle(el).left) + 1 + 'px';
+        });
+
+    }
+
+//    var fps = 60;
+//
+//    function animate() {
+//        setTimeout(function () {
+//            requestAnimationFrame(animate);
+//
+//            go ();
+//
+//        }, 1000 / fps);
+//    }
+//    animate();
+
+    (function animloop(){
+        requestAnimFrame(animloop);
+        go();
+    })();
+
+//    setTimeout(function st() {
+//        go();
+//        setTimeout(st, 1000 / 60);
+//    }, 1000 / 60)
+
+
+
+
+
+</script>
+
+</body>
+</html>
