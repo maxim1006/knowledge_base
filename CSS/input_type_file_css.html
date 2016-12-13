@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Input type file example</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .upload-button {
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+            height: 30px;
+            padding: 0 15px;
+            line-height: 30px;
+            background-color: #e7eaec;
+            border-radius: 2px;
+            overflow: hidden;
+            cursor: pointer;
+            -webkit-transition: all 0.2s;
+            transition: all 0.2s;
+        }
+        .upload-button_big:before {
+            content: none;
+        }
+        .upload-button__text {
+            font-size: 13px;
+            color: #a2acb5;
+            line-height: 30px;
+            text-transform: uppercase;
+        }
+        .upload-button__input {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+        }
+        .upload-button_big .upload-button__input {
+            zoom: 4;
+        }
+    </style>
+</head>
+<body>
+
+<div class="upload-button jsUploadButton">
+    <span class="upload-button__text">
+        SELECT FILE
+    </span>
+    <input class="upload-button__input" type="file" name="file">
+</div>
+
+</body>
+</html>
