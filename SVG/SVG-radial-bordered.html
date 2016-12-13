@@ -1,0 +1,203 @@
+<html>
+<head>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.4.0/velocity.js"></script>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .svg-radial {
+        }
+        
+        .svg-radial__image {
+            position: absolute;
+            bottom: 3px;
+            left: 20px;
+            width: 10px;
+            height: 10px;
+            background-color: #000;
+        }
+
+        .svg-wrapper {
+            position: relative;
+            height: 100px;
+            width: 100px;
+            margin: 30px;
+        }
+
+        .svg-radial__circle {
+            fill: transparent;
+            stroke: url(#circleGradientGreen);;
+            stroke-width: 10px;
+        }
+
+        .svg-radial__circle-shadow {
+            stroke-width: 10px;
+            stroke: #f0f1f3;
+            fill: transparent;
+        }
+
+        .svg-radial__circle-border {
+            stroke-width: 2px;
+            stroke: #d9ac0c;
+            fill: transparent;
+        }
+
+        .svg-radial__circle-border-shadow {
+            stroke-width: 2px;
+            stroke: #dcdcdd;
+            fill: #fff;
+        }
+
+        .svg-radial__circle-inner._white {
+            fill: #fff;
+        }
+
+    </style>
+</head>
+<body>
+
+<input type="text" id="input">
+
+<div class="svg-wrapper">
+    <span class="svg-radial__image"></span>
+
+    <svg class="svg-radial" id="svgRadialBig"
+         version="1.1"
+         xmlns="http://www.w3.org/2000/svg"
+    >
+        <defs>
+            <linearGradient id="circleGradientGreen">
+                <stop offset="0%"  stop-color="#f5c30b"/>
+                <stop offset="100%" stop-color="#eaaa08"/>
+            </linearGradient>
+        </defs>
+
+        <!--54.95 (pi*r*alpha/180)-->
+        <circle
+                class="svg-radial__circle-shadow"
+                stroke-dasharray="314"
+                stroke-dashoffset="0"
+                r="45"
+                cx="50"
+                cy="50"
+        ></circle>
+        <circle
+                class="svg-radial__circle"
+                stroke-dasharray="314"
+                stroke-dashoffset="272"
+                transform="rotate(63, 50, 50)"
+                r="45"
+                cx="50"
+                cy="50"
+        ></circle>
+
+
+        <!--52.50-->
+        <circle
+                class="svg-radial__circle-border-shadow"
+                stroke-dasharray="314"
+                stroke-dashoffset="0"
+                r="45"
+                cx="50"
+                cy="50"
+        ></circle>
+        <circle
+                class="svg-radial__circle-border"
+                stroke-dasharray="314"
+                stroke-dashoffset="272"
+                transform="rotate(63, 50, 50)"
+                r="45"
+                cx="50"
+                cy="50"
+        ></circle>
+
+
+
+        <circle
+                class="svg-radial__circle-inner _dash-shadow"
+                stroke-dasharray="314"
+                stroke-dashoffset="271"
+                stroke="#fff"
+                stroke-width="10"
+                fill="transparent"
+                transform="rotate(63, 50, 50)"
+                r="46"
+                cx="50"
+                cy="50"
+        ></circle>
+
+
+        <circle
+                class="svg-radial__circle-inner _white"
+                stroke-dasharray="251"
+                stroke-dashoffset="251"
+                r="43"
+                cx="50"
+                cy="50"
+        ></circle>
+
+        <text class="svg-radial__text" x="0" y="60" font-family="Verdana" font-size="26" fill="#ff9308" text-anchor="middle" transform="translate(50)">
+            0%
+        </text>
+    </svg>
+</div>
+
+
+<script>
+
+    let $svgRadial = $('.svg-radial'),
+        $svgRadialCircle = $svgRadial.find('.svg-radial__circle'),
+        $svgRadialCircleBorder = $svgRadial.find('.svg-radial__circle-border'),
+        $svgRadialText = $svgRadial.find('.svg-radial__text'),
+        $svgRadialImage = $('.svg-radial__image');
+
+    console.log($svgRadialImage);
+
+    angle = 360;
+
+    $svgRadial.on('click', () => {
+
+        $svgRadialCircle.velocity({
+            'stroke-dashoffset': input.value ? (272 - input.value*2.72) : 0
+        }, {
+            duration: 1000,
+        });
+
+        $svgRadialCircleBorder.velocity({
+            'stroke-dashoffset': input.value ? (272 - input.value*2.72) : 0
+        }, {
+            duration: 1000,
+            progress: function(elements, complete, remaining, start, tweenValue) {
+                let percentage = 100 - (parseFloat($svgRadialCircleBorder.css('stroke-dashoffset')))*100/272;
+
+                $svgRadialText.text(percentage.toFixed(0) + '%');
+
+                console.log(Math.sin(parseFloat($svgRadialCircleBorder.css('stroke-dashoffset'))));
+
+                $svgRadialImage.css({
+                    bottom: 3 + 50 * Math.sin(angle-=3 * Math.PI / 180),
+                    left: 20 + 50 * Math.cos(angle-=3 * Math.PI / 180)
+                });
+            }
+        });
+    });
+
+
+    function toDegrees (angle) {
+        return angle * (180 / Math.PI);
+    }
+
+    function toRadians (angle) {
+        return angle * (Math.PI / 180);
+    }
+
+</script>
+
+
+</body>
+</html>
