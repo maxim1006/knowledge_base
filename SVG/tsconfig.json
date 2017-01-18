@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": false,
+        "lib": ["es5", "dom", "es2015.promise", "ES2015", "ES2016"],
+        "sourceMap": true,
+        "noEmitOnError": false,
+        "removeComments": true,
+        "typeRoots": ["@types", "scripts/@types"]
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
