@@ -1,0 +1,10 @@
+...
+
+config.resolve = {
+
+	...
+	//прописать, какие папки резолвить
+	modules: [path.resolve(__dirname, "src"), "node_modules"]  //["node_modules"] - default
+	...
+
+}
