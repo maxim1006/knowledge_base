@@ -42,7 +42,7 @@ npm uninstall имя_пакета
 
 
 /*Обновить npm*/
-npm install -g npm
+npm install npm@latest -g
 
 
 /*Посмотреть устаревшие модули*/
