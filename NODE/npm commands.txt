@@ -18,9 +18,9 @@ npm unpublish
 
 
 /*******tilda and caret*********/
-~ - будет грузить 1.2.3 вместо 1.2.2 (the most recent minor version)(the middle number)
+~ - будет грузить 1.2.3 вместо 1.2.2 (the most recent minor version)
 ^ -  It will update you to the most recent major version (the first number) 2.0 вместо 1.0
-latest
+latest, если не сможет первую, то проапдейтит вторую
 
 /*********чтобы исправить ошибку гит**/
 git config --global url."https://github.com/".insteadOf git@github.com:
