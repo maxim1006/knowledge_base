@@ -1,0 +1,34 @@
+static getInputSelection(el: any) {
+    let start = 0, normalizedValue, range,
+        textInputRange, len, endRange;
+
+    if (typeof el.selectionStart === "number" && typeof el.selectionEnd === "number") {
+        start = el.selectionStart;
+    } else {
+        range = document["selection"].createRange();
+
+        if (range && range.parentElement() === el) {
+            len = el.value.length;
+            normalizedValue = el.value.replace(/\r\n/g, "\n");
+
+            textInputRange = el.createTextRange();
+            textInputRange.moveToBookmark(range.getBookmark());
+
+            endRange = el.createTextRange();
+            endRange.collapse(false);
+
+            if (textInputRange.compareEndPoints("StartToEnd", endRange) > -1) {
+                start = len;
+            } else {
+                start = -textInputRange.moveStart("character", -len);
+                start += normalizedValue.slice(0, start).split("\n").length - 1;
+            }
+        }
+    }
+
+    return start;
+}
+
+static setInputSelection(el: any, num: number) {
+    el.selectionEnd = num;
+}
