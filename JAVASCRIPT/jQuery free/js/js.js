@@ -1,3 +1,13 @@
+//найти высоту/ширину страницы
+//  getViewport() {
+//     let documentElement = document.documentElement,
+//         body = document.body,
+//         width = window.innerWidth || documentElement.clientWidth || body.clientWidth,
+//         height = window.innerHeight || documentElement.clientHeight || body.clientHeight;
+//
+//     return {width: width, height: height};
+// }
+
 //isInteger
 /*Number.isInteger(value)
 
