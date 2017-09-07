@@ -1,0 +1,33 @@
+https://htmlacademy.ru/blog/27-how-to-squash-commits-and-why-it-is-needed
+
+
+1) //delete existing tag
+git tag -d feature/SLSCC-5420-new-components-styles-history
+git push origin :refs/tags/feature/SLSCC-5420-new-components-styles-history
+
+
+
+2) //create tag for commit history "Tag for commit history"
+git tag -a feature/SLSCC-5420-new-components-styles-history
+
+3) //push tag to origin
+git push origin --tags
+
+4) //get count of commits = n
+git cherry -v develop | wc -l
+
+4.5) Rebase onto develop
+
+5) //rebase to count of commits = n
+git rebase -i HEAD~n
+
+6) //replace pick to squash from second commit + save and close file 'Glue commits for ellipsis'
+7) //merge conflicts add execute git add for modified files - use compare with latest Repository version
+
+8)//continue rebasing
+git rebase --continue
+
+9) commit rebasing with comment "Rebase for one commit" for rebasing and "SLSCC-4892-tooltip implementation" for final comment
+
+//push to origin branch
+10) git push --force
