@@ -1008,3 +1008,8 @@ function getClass(obj) {
 }
 
 console.log(getClass(obj) === 'obj');*/
+
+//Kebab case convert
+// private convertToKebabCase(value: string):string {
+//     return value.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+// }
