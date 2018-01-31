@@ -1,3 +1,10 @@
+//Найти уникальные значения в массиве
+// function getUniqueArray(array: any[]) {
+//     return array.filter(function (item, index, self) {
+//         return self.indexOf(item) === index;
+//     });
+// }
+
 //найти высоту/ширину страницы
 //  getViewport() {
 //     let documentElement = document.documentElement,
